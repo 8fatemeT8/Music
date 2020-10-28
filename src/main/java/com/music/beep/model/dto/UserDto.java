@@ -2,16 +2,12 @@ package com.music.beep.model.dto;
 
 import com.music.beep.utils.validation.Email;
 import com.music.beep.utils.validation.Password;
-import com.music.beep.utils.validation.PhoneNumber;
 
 public class UserDto extends DtoBase {
 	private String username;
 
 	@Password
 	private String password;
-
-	@PhoneNumber
-	private String phoneNumber;
 
 	@Email
 	private String email;
@@ -30,14 +26,6 @@ public class UserDto extends DtoBase {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
