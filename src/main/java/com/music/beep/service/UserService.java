@@ -41,18 +41,17 @@ public class UserService extends ServiceBase<User, UserDto, UserDomain, UserRepo
 
 	@Override
 	public void validate(User user) {
-		userRepository.findByUsername(user.getUsername()).orElseThrow(() ->
-				new ExceptionHandler("this username taken before", ErrorCodes.ERROR_CODE_USER_NAME_NOT_UNIQUE));
+		if (userRepository.findByUsername(user.getUsername()).isPresent())
+			throw new ExceptionHandler("this username taken before", ErrorCodes.ERROR_CODE_USER_NAME_NOT_UNIQUE);
 
 		if (user.getEmail() != null) {
 			ThreadUtils.createThreadAndStart(() -> {
 				String token = jwtTokenUtil.generateToken(user);
 				try {
-					emailService.sendEmailWithLink(user.getEmail(),
-							"verify email", "hi " + user.getUsername() + " please click on the blew link and verify email to do all you want"
-							, "https://localhost:8081/api/account/verify?token:" + token);
-				} catch (MessagingException e) {
-					e.printStackTrace();
+//					emailService.sendEmailWithLink(user.getEmail(),
+//							"verify email", "hi " + user.getUsername() + " please click on the blew link and verify email to do all you want"
+//							, "https://localhost:8081/api/account/verify?token:" + token);
+				} catch (/*Messaging*/Exception e) {
 				}
 			});
 		}

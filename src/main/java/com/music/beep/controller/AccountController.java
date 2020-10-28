@@ -24,13 +24,13 @@ public class AccountController {
 
 
 	@PostMapping("/register")
-	public ResponseEntity<JwtResponse> register(UserDto dto) {
+	public ResponseEntity<JwtResponse> register(@RequestBody  UserDto dto) {
 		return ResponseEntity.ok(userService.create(dto));
 	}
 
 
 	@GetMapping("/login")
-	public ResponseEntity<JwtResponse> login(UserDto dto) {
+	public ResponseEntity<JwtResponse> login(@RequestBody UserDto dto) {
 		return ResponseEntity.ok(userService.login(dto));
 	}
 }
