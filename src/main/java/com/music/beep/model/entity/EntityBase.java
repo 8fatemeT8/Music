@@ -2,6 +2,7 @@ package com.music.beep.model.entity;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 
 @MappedSuperclass
 public class EntityBase {
@@ -11,7 +12,7 @@ public class EntityBase {
 	private Long id;
 
 	@Column(name = "create_date")
-	private Instant createDate;
+	private Instant createDate = new Date().toInstant();
 
 	@Column(name = "update_date")
 	private Instant updateDate;

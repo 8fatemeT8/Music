@@ -60,8 +60,8 @@ public class ApplicationWebSecurity extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers(
 				"/account/login",
-				"/",
-				"/**",
+				"/account/register",
+				"/account/verify",
 				"/assets/scss/**",
 				"/assets/fonts/**",
 				"/assets/images/**",
